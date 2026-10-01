@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Phil Johnson Learning Design</title>
+<meta name="description" content="Interactive e-learning portfolio of Phil Johnson RN, nurse educator: nursing simulations, Moodle assessment design and AI learning tools, each with its design rationale.">
+<meta name="author" content="Phil Johnson">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Phil Johnson RN | E-learning Portfolio">
+<meta property="og:description" content="Interactive e-learning portfolio of Phil Johnson RN, nurse educator: nursing simulations, Moodle assessment design and AI learning tools, each with its design rationale.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: clinical chart sheet — ECG-grid hero, intervention ladder, case files that open into a decision record */
+:root{
+  --paper:#fbfbf9; --sheet:#ffffff; --ink:#18232e; --muted:#5a6672; --line:#dfe3e6;
+  --grid:#f0cfcf; --grid-strong:#e3a9a9; --accent:#1d5fa0; --accent-soft:#e6eef7;
+  --ok:#2f7d4f; --ok-soft:#e3f1e8; --warn:#9a6a00; --warn-soft:#fbf1d9; --info:#6a4aa0; --info-soft:#efe9f8;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#11171d; --sheet:#171f27; --ink:#e7ecf0; --muted:#9aa7b3; --line:#2a3540;
+  --grid:#2c2226; --grid-strong:#4a3036; --accent:#7fb2e6; --accent-soft:#1c2c3d;
+  --ok:#7fcb9b; --ok-soft:#18301f; --warn:#e7c06a; --warn-soft:#33290f; --info:#b9a2e6; --info-soft:#2a2238; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11171d; --sheet:#171f27; --ink:#e7ecf0; --muted:#9aa7b3; --line:#2a3540;
+  --grid:#2c2226; --grid-strong:#4a3036; --accent:#7fb2e6; --accent-soft:#1c2c3d;
+  --ok:#7fcb9b; --ok-soft:#18301f; --warn:#e7c06a; --warn-soft:#33290f; --info:#b9a2e6; --info-soft:#2a2238; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:0 64px}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* Hero on ECG paper */
+.hero{background-color:var(--sheet);
+  background-image:
+    linear-gradient(var(--grid-strong) 1px,transparent 1px),linear-gradient(90deg,var(--grid-strong) 1px,transparent 1px),
+    linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:50px 50px,50px 50px,10px 10px,10px 10px;border-bottom:1px solid var(--line)}
+.hero .wrap{padding-block:48px 28px;display:grid;gap:18px}
+.hero h1{font-size:clamp(34px,6vw,60px);font-weight:700;letter-spacing:-.01em;max-width:16ch}
+.hero p.lede{font-size:clamp(18px,2.2vw,21px);max-width:58ch;margin:0;background:var(--sheet);padding:2px 0}
+.trace{width:100%;height:70px;display:block}
+.trace path{fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linejoin:round}
+.trace circle{fill:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.trace circle{animation:blip 1.6s ease-in-out infinite}}
+@keyframes blip{50%{opacity:.25}}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.meta span{background:var(--sheet);padding:2px 0}
+
+section{padding-top:56px}
+section>header{display:grid;gap:8px;margin-bottom:22px}
+section h2{font-size:clamp(26px,3.6vw,36px);font-weight:700}
+section>header p{margin:0;max-width:62ch;color:var(--muted)}
+
+/* Method */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{border-top:2px solid var(--ink);padding-top:12px;min-width:0}
+.steps li::before{counter-increment:s;content:"Step " counter(s);font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.steps h3{font-size:20px;margin:4px 0 6px}
+.steps p{margin:0;font-size:16px}
+
+/* Ladder */
+.ladder{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;align-items:end}
+.rung{appearance:none;border:1px solid var(--line);background:var(--sheet);color:var(--ink);text-align:left;padding:12px;cursor:pointer;font:inherit;display:flex;flex-direction:column;gap:6px;border-radius:4px;transition:border-color .15s,background .15s}
+.rung:hover{border-color:var(--accent)}
+.rung[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.rung .lvl{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.rung strong{font-family:var(--display);font-size:17px;line-height:1.2}
+.rung .n{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.rung:nth-child(1){min-height:96px}.rung:nth-child(2){min-height:118px}.rung:nth-child(3){min-height:140px}.rung:nth-child(4){min-height:162px}.rung:nth-child(5){min-height:184px}
+.axis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;border-top:1px solid var(--line);padding-top:6px}
+@media (max-width:640px){.ladder{grid-template-columns:1fr}.rung{min-height:0!important}.axis{display:none}}
+
+/* Filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 18px;align-items:center}
+.chip{appearance:none;font:500 14px var(--display);border:1px solid var(--line);background:var(--sheet);color:var(--ink);padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.filters .count{font-family:var(--mono);font-size:13px;color:var(--muted);margin-left:auto}
+
+/* Cases */
+.cases{display:grid;gap:14px}
+.case{background:var(--sheet);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.case>button.head{appearance:none;width:100%;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:6px 18px;padding:18px 20px;align-items:start}
+.case>button.head:hover h3{color:var(--accent)}
+.head h3{font-size:22px;font-weight:600}
+.head .sum{grid-column:1/-1;margin:0;color:var(--muted);font-size:16px;max-width:70ch}
+.head .row{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pill{font-family:var(--mono);font-size:12px;padding:2px 8px;border-radius:3px;white-space:nowrap}
+.s-live{background:var(--ok-soft);color:var(--ok)}
+.s-dev{background:var(--warn-soft);color:var(--warn)}
+.s-mod{background:var(--info-soft);color:var(--info)}
+.tag{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);padding:1px 7px;border-radius:3px}
+.chev{font-family:var(--mono);color:var(--muted);font-size:14px;padding-top:4px}
+.case.open .chev{color:var(--accent)}
+.body{border-top:1px solid var(--line);padding:6px 20px 22px}
+.tabs{display:flex;flex-wrap:wrap;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.tab{appearance:none;border:0;background:none;color:var(--muted);font:600 15px var(--display);padding:12px 12px 10px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.panel{max-width:72ch}
+.panel p{margin:0 0 12px}
+.panel h4{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px;font-weight:600}
+.panel ul{margin:0 0 12px;padding-left:20px}
+.panel li{margin-bottom:4px}
+.opts{display:grid;gap:8px;margin-bottom:14px}
+.opt{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:10px 12px;border:1px solid var(--line);border-radius:4px}
+.opt .mk{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:2px}
+.opt b{font-family:var(--display);font-weight:600;font-size:16px}
+.opt span.why{grid-column:2;font-size:15px;color:var(--muted)}
+.opt.chosen{border-color:var(--accent);background:var(--accent-soft)}
+.opt.chosen .mk{color:var(--accent)}
+.opt.chosen span.why{color:var(--ink)}
+.theory{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.theory span{font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:3px}
+.links{font-family:var(--mono);font-size:14px;word-break:break-word}
+.empty{color:var(--muted);font-style:italic}
+
+/* Matrix */
+.mx{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--sheet)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:center}
+th{font-family:var(--display);font-weight:600;font-size:13px;vertical-align:bottom}
+th:first-child,td:first-child{text-align:left;font-family:var(--display);font-size:15px;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+td .dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--accent)}
+td .ring{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid var(--accent);opacity:.6}
+th button{appearance:none;border:0;background:none;color:var(--accent);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
+.legend{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+
+/* About */
+.about{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px}
+.about p{margin:0 0 12px}
+dl.creds{margin:0;display:grid;gap:10px}
+dl.creds dt{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+dl.creds dd{margin:0;font-size:16px}
+@media (max-width:760px){.about{grid-template-columns:1fr}}
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:16px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">E-learning portfolio · Phil Johnson RN</div>
+    <h1>Learning design built around how nurses actually reason</h1>
+    <p class="lede">I am a Registered Nurse and nurse educator who builds digital learning for the Diploma of Nursing. Each project below opens into a decision record: the problem, the options I weighed, the pathway I chose and why.</p>
+    <svg class="trace" viewBox="0 0 1000 70" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 40 H160 l12 -6 l12 6 H230 l8 6 l10 -40 l10 50 l8 -16 H330 l18 -10 l18 10 H520 l12 -6 l12 6 H570 l8 6 l10 -40 l10 50 l8 -16 H670 l18 -10 l18 10 H860 l12 -6 l12 6 H910 l8 6 l10 -40 l10 50 l8 -16 H1000"/>
+      <circle cx="996" cy="40" r="4"/>
+    </svg>
+    <div class="meta"><span>Marr Mooditj Training · Byford WA</span><span>RN Div 1 · Cert IV TAE40122</span><span>7 projects · 5 levels of fidelity</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="method">
+  <header>
+    <div class="eyebrow">Design rationale</div>
+    <h2>How I choose a pathway</h2>
+    <p>Most learning problems do not need the most impressive technology. I start from the performance gap and work upward only when a cheaper option cannot close it.</p>
+  </header>
+  <ol class="steps">
+    <li><h3>Name the gap</h3><p>Is the problem knowledge, skill, confidence, or the system around the learner? Each points to a different solution.</p></li>
+    <li><h3>Pick the lowest rung that works</h3><p>A pocket card beats a course if the need is recall at the bedside. Simulation is reserved for judgement under pressure.</p></li>
+    <li><h3>Build with learners</h3><p>Prototype early, put it in front of students, and change it based on what they do, not what they say they will do.</p></li>
+    <li><h3>Map, moderate, evaluate</h3><p>Tie every item to the unit's evidence requirements and NMBA standards, then collect evidence that it changed something.</p></li>
+  </ol>
+</section>
+
+<section id="ladder">
+  <header>
+    <div class="eyebrow">Intervention ladder</div>
+    <h2>Where each project sits</h2>
+    <p>Select a level to filter the case files below.</p>
+  </header>
+  <div class="ladder" id="ladderEl" role="group" aria-label="Filter by fidelity level"></div>
+  <div class="axis"><span>Lower cost, faster to build</span><span>Higher fidelity, higher cost →</span></div>
+</section>
+
+<section id="cases">
+  <header>
+    <div class="eyebrow">Case files</div>
+    <h2>Problems and the pathways I chose</h2>
+  </header>
+  <div class="filters" id="filterEl" role="group" aria-label="Filter by capability"></div>
+  <div class="cases" id="caseEl"></div>
+</section>
+
+<section id="matrix">
+  <header>
+    <div class="eyebrow">Capability matrix</div>
+    <h2>What each project demonstrates</h2>
+  </header>
+  <div class="mx"><table id="mxEl"></table></div>
+  <div class="legend"><span><span class="dot" style="display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--accent);vertical-align:middle"></span> primary capability</span><span><span style="display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid var(--accent);opacity:.6;vertical-align:middle"></span> supporting</span></div>
+</section>
+
+<section id="about">
+  <header>
+    <div class="eyebrow">Background</div>
+    <h2>Clinician first, designer second</h2>
+  </header>
+  <div class="about">
+    <div>
+      <p>I teach the Diploma of Nursing at Marr Mooditj Training, facilitate nursing students on placement at Fiona Stanley and Royal Perth hospitals, and keep my clinical practice current through casual CCU and ED shifts. That mix shapes the work: I design for the moment a student meets a real patient.</p>
+      <p>Before nursing I spent thirteen years as a commissioned Intelligence Officer in the Royal Australian Air Force. Analysing systems, weighing options under uncertainty and writing the reasoning down for someone else to scrutinise are habits from that career, and they are the habits this portfolio documents.</p>
+      <p>My research builds on the same question. My proposed doctoral study at the University of Notre Dame Australia, <em>Making Clinical Reasoning Visible</em>, examines how clinical reasoning can be assessed in OSCEs. A later strand explores game mechanics that make a learner's diagnostic reasoning visible step by step.</p>
+    </div>
+    <dl class="creds">
+      <div><dt>Registration</dt><dd>Registered Nurse (Division 1)</dd></div>
+      <div><dt>Education</dt><dd>Bachelor of Nursing · Bachelor of Science · Cert IV Training and Assessment (TAE40122)</dd></div>
+      <div><dt>Memberships</dt><dd>Australian College of Nursing · ACCCN · HERDSA Health Sciences and SoTL SIGs</dd></div>
+      <div><dt>Tools</dt><dd>Moodle · Python and web apps on Render · LLM integration · ESP32 · Blender and 3D printing</dd></div>
+    </dl>
+  </div>
+</section>
+
+<footer>Phil Johnson · Nurse educator · Perth, Western Australia</footer>
+</main>
+
+<script>
+const RUNGS=[
+  {id:"aid",name:"Job aid",lvl:"Level 1"},
+  {id:"lms",name:"LMS module",lvl:"Level 2"},
+  {id:"web",name:"Interactive web simulation",lvl:"Level 3"},
+  {id:"ai",name:"AI-driven simulation",lvl:"Level 4"},
+  {id:"emb",name:"Embodied simulation",lvl:"Level 5"}
+];
+const CAPS=["Needs analysis","Instructional design","Assessment and compliance","Simulation","Web development","AI integration","Accessibility","Change management","Evaluation"];
+
+const CASES=[
+{id:"med",title:"HLTENN040 Medication Simulator",rung:"web",status:["s-live","Used with two cohorts"],
+ tags:["Simulation","Web development","Assessment and compliance"],
+ sum:"A private, repeatable web simulator for medication administration and drug calculations, built because the barrier was shame as much as maths.",
+ caps:{"Needs analysis":2,"Instructional design":2,"Simulation":2,"Web development":2,"Assessment and compliance":1,"Evaluation":1},
+ problem:`<p>Diploma of Nursing students reach the medication unit carrying real anxiety about drug calculations. In class, many would rather stay quiet than show they are unsure. Errors at this stage have patient safety consequences later, and there is little class time for the repeated practice calculations need.</p><h4>Constraints</h4><ul><li>Must align with HLTENN040 Administer and monitor medicines.</li><li>Wide spread of maths confidence in each cohort.</li><li>No budget for licensed software; students use their own devices.</li></ul>`,
+ options:[
+  ["Paper worksheet drills","Cheap, but no immediate feedback, and public marking reinforces the shame students already feel.",0],
+  ["Moodle quiz bank","Good for recall of formulas, but cannot model the administration workflow: checks, rights and the chart in front of you.",0],
+  ["Commercial medication-calculation platform","Ongoing licence cost and not aligned to the unit or to WA chart conventions.",0],
+  ["Purpose-built web simulator","Private, unlimited attempts, worked feedback, and the calculation sits inside the whole administration task.",1]],
+ why:`<p>The gap was confidence as much as knowledge, so the design had to lower the social risk of being wrong. Practising privately with instant feedback builds self-efficacy before students perform in front of peers or assessors. Breaking each calculation into visible steps manages intrinsic load for students who freeze at a full problem. Placing the maths inside the administration task means students practise the clinical act, not an abstract sum.</p>`,
+ theory:["Self-efficacy (Bandura)","Cognitive load theory (Sweller)","Deliberate practice (Ericsson)"],
+ evidence:`<p>Trialled with two groups: a pre-unit group preparing for the medication unit, and a post-unit group who had passed the unit and completed medical and surgical placements.</p><p>Pre-unit students reported that it built their confidence and reduced the stigma and shame they associated with drug calculations.</p><h4>Next</h4><ul><li>Add a structured pre/post self-efficacy measure.</li><li>Publish as a live hosted site for the next cohort.</li></ul>`,
+ links:""},
+
+{id:"crs",title:"Clinical Reasoning Simulator",rung:"ai",status:["s-live","Live proof of concept"],
+ tags:["Simulation","AI integration","Web development"],
+ sum:"A web-based proof of concept that asks students to show their reasoning, not only their final answer.",
+ caps:{"Instructional design":2,"Simulation":2,"Web development":2,"AI integration":2,"Assessment and compliance":1},
+ problem:`<p>In an OSCE, assessors see what a student does, not why. Two students can reach the same action through sound reasoning and through a lucky guess, and a checklist cannot tell them apart. This is the problem my proposed PhD, <em>Making Clinical Reasoning Visible</em>, addresses.</p>`,
+ options:[
+  ["Written case studies","Show reasoning, but after the fact and without the time pressure of a deteriorating patient.",0],
+  ["Think-aloud during OSCEs","Adds assessor load and performance anxiety, and is hard to standardise.",0],
+  ["High-fidelity manikin scenario","Realistic, but costly, scarce and still mostly captures actions.",0],
+  ["Web simulator that prompts reasoning as the case unfolds","Cheap to run, repeatable, and captures each step of the student's thinking.",1]],
+ why:`<p>Clinical reasoning is a cycle of cue collection, interpretation, action and reflection. A simulator that pauses at each stage and asks the student to commit to an interpretation makes that cycle visible to the student and the educator. Building it as a proof of concept first let me test whether the idea was workable before committing research time to it.</p>`,
+ theory:["Clinical Reasoning Cycle (Levett-Jones)","Clinical judgement model (Tanner)"],
+ evidence:`<p>Live as a demonstration tool. It is not a research instrument and collects no study data. Its role is to show supervisors and colleagues what visible reasoning could look like in practice.</p>`,
+ links:`<a href="https://clinical-reasoning-simulator.onrender.com">clinical-reasoning-simulator.onrender.com</a>`},
+
+{id:"can",title:"Cancer Survivor Conversation Simulator",rung:"ai",status:["s-live","Live, in use by participants"],
+ tags:["Simulation","AI integration","Web development"],
+ sum:"An AI conversation partner for practising difficult, person-centred conversations with people living after cancer.",
+ caps:{"Simulation":2,"AI integration":2,"Web development":2,"Instructional design":1,"Evaluation":1},
+ problem:`<p>Therapeutic communication with cancer survivors is hard to practise. Peer role play lacks realism, and standardised patient actors are expensive and hard to schedule. Students get few chances to rehearse before the real conversation.</p>`,
+ options:[
+  ["Peer role play","Free and familiar, but peers rarely sustain a believable persona.",0],
+  ["Standardised patient actors","The gold standard for realism, but limited by cost and availability.",0],
+  ["Branching video scenario","Consistent, but responses are fixed to a few paths.",0],
+  ["LLM-driven persona in a web app","Open-ended replies, unlimited rehearsal, available whenever the learner is.",1]],
+ why:`<p>The skill being practised is responsive conversation, so the learner needs a partner that responds to what they actually say. A large language model persona gives that at scale. The trade-off is control: persona design and guardrails matter more than in scripted media.</p>`,
+ theory:["Experiential learning (Kolb)","Deliberate practice (Ericsson)"],
+ evidence:`<p>Live and used by participants. Running a real service taught me operational lessons too: when the chat function failed for participants in September 2026, it showed the need for monitoring and a fallback before scaling further.</p>`,
+ links:`<a href="https://cancer-simulator.onrender.com">cancer-simulator.onrender.com</a>`},
+
+{id:"aid011",title:"HLTAID011 Provide First Aid on Moodle",rung:"lms",status:["s-mod","In moderation"],
+ tags:["Assessment and compliance","Instructional design"],
+ sum:"Converting two paper knowledge assessments into auto-marked Moodle quizzes, with every item mapped to the unit's knowledge evidence.",
+ caps:{"Assessment and compliance":2,"Instructional design":2,"Change management":1,"Evaluation":1},
+ problem:`<p>The first aid unit's knowledge assessments were paper-based: Task 1 with 50 questions and Task 2 with 57, with answer keys held in marking guides. Marking took trainer time, feedback was slow, and showing that each knowledge evidence requirement was assessed relied on manual cross-referencing.</p>`,
+ options:[
+  ["Upload the existing PDFs to Moodle","Fast, but nothing changes: still hand-marked, no item data.",0],
+  ["Interactive H5P activities","Engaging, but harder to audit and less suited to formal assessment.",0],
+  ["Rebuild as Moodle quizzes with true/false and multiple-choice items, mapped item by item to training.gov.au knowledge evidence","Auto-marking, instant feedback and a clear audit trail.",1]],
+ why:`<p>In an RTO, assessment design is also a compliance task. Mapping each item to a specific knowledge evidence requirement means moderators and auditors can see coverage directly. Closed item types suit the unit's knowledge content and produce item-level data that shows which questions students find hard.</p>`,
+ theory:["Principles of assessment (validity, reliability, fairness, flexibility)","Rules of evidence"],
+ evidence:`<p>Built and currently in moderation before student delivery.</p><h4>Next</h4><ul><li>Run item analysis after the first cohort and revise weak distractors.</li></ul>`,
+ links:""},
+
+{id:"dt",title:"Paper to Moodle: digital transformation",rung:null,status:["s-dev","Commissioned, under way"],
+ tags:["Change management","Assessment and compliance"],
+ sum:"A business case that moved an RTO's clinical checklists, student file charting and practical assessments from paper towards Moodle.",
+ caps:{"Needs analysis":2,"Change management":2,"Assessment and compliance":2,"Instructional design":1},
+ problem:`<p>Clinical checklists, student file charting and practical assessments ran on paper. Records were slow to collate, at risk of loss, and had to be re-keyed for the student management system and national reporting.</p>`,
+ options:[
+  ["Keep paper and tighten the filing process","Lowest effort, but leaves the re-keying and risk in place.",0],
+  ["Procure a new platform","Expensive and disruptive for a small organisation.",0],
+  ["Phased migration to the existing Moodle, with automation added later","Uses what the organisation already has and limits disruption to one course at a time.",1]],
+ why:`<p>I raised the business case for Board review and the CEO asked me to commence it. A phased approach lets staff learn the new process on one course before the next, and keeps the organisation compliant throughout. Workflow automation is planned as a later phase, once the manual digital process is stable.</p>`,
+ theory:["Phased change","Action mapping (Moore)"],
+ evidence:`<p>Under way. The first course build (HLTAID011) is in moderation. Automation flows are not yet live.</p>`,
+ links:""},
+
+{id:"cards",title:"Nursing pocket reference cards",rung:"aid",status:["s-dev","Pilot card built"],
+ tags:["Accessibility","Instructional design"],
+ sum:"Durable, cleanable 100 × 60 mm reference cards for the bedside, including a braille edition.",
+ caps:{"Needs analysis":2,"Instructional design":2,"Accessibility":2},
+ problem:`<p>On placement, students need fast recall of tools such as GCS, ISOBAR, ADDS and the PARROT paediatric chart. A phone at the bedside is often inappropriate, and laminated paper wears out and is hard to clean.</p>`,
+ options:[
+  ["Another e-learning module","The gap is recall at the point of care, not understanding. A course does not travel to the bedside.",0],
+  ["Mobile app","Phone use at the bedside raises infection control and professionalism concerns.",0],
+  ["Laminated paper cards","Cheap, but wear quickly and are hard to clean.",0],
+  ["3D-printed cards in a wipeable filament, with braille versions","Durable, cleanable, pocket-sized and accessible.",1]],
+ why:`<p>Not every gap needs training. When the need is recall at the point of care, a job aid is the most direct solution. Printing the cards let me design for infection control and add braille editions so vision-impaired learners and clinicians are included from the start rather than as an afterthought.</p><p>Content is checked against current standards; for example, the GCS card follows the 2014 structured approach.</p>`,
+ theory:["Action mapping (Moore)","Universal Design for Learning (CAST)","Performance support"],
+ evidence:`<p>The GCS card is built end to end as the pilot. Content for 27 cards across three clusters is drafted, each to be clinically signed off before printing.</p>`,
+ links:""},
+
+{id:"proxy",title:"Autonomous Patient Proxy",rung:"emb",status:["s-dev","In development"],
+ tags:["Simulation","AI integration"],
+ sum:"A low-cost talking patient that tracks the student with a camera, so learners can perform a procedure and communicate at the same time.",
+ caps:{"Simulation":2,"AI integration":2,"Instructional design":1,"Evaluation":1},
+ problem:`<p>Screen-based simulators keep students' hands on a keyboard. In an OSCE, nurses must perform a procedure while talking to and watching the patient. Manikins that respond adaptively are expensive and scarce.</p>`,
+ options:[
+  ["Screen-based AI simulation","Already built, but cannot test communication while hands are busy.",0],
+  ["High-fidelity commercial manikin","Realistic but costly, and dialogue is usually operator-driven.",0],
+  ["ESP32 pan/tilt head with camera, microphone and speaker, driven by an AI voice persona","Low cost, follows the student, talks back adaptively.",1]],
+ why:`<p>The construct I want to observe is situational awareness and therapeutic communication under task load. That requires a patient who speaks, responds and can deteriorate while the learner is busy. A planned scenario is a post-operative patient developing a pulmonary embolism, which tests whether students notice and escalate.</p>`,
+ theory:["Situated cognition","Clinical Reasoning Cycle (Levett-Jones)"],
+ evidence:`<p>Hardware stack chosen and AI pipeline designed. Not yet tested with learners.</p>`,
+ links:""}
+];
+
+let activeRung=null, activeCap="All", open=new Set(), tabState={};
+const $=s=>document.querySelector(s);
+
+function renderLadder(){
+  $("#ladderEl").innerHTML=RUNGS.map(r=>{
+    const n=CASES.filter(c=>c.rung===r.id).length;
+    return `<button class="rung" id="rung-${r.id}" data-r="${r.id}" aria-pressed="${activeRung===r.id}"><span class="lvl">${r.lvl}</span><strong>${r.name}</strong><span class="n">${n} project${n===1?"":"s"}</span></button>`}).join("");
+  document.querySelectorAll(".rung").forEach(b=>b.onclick=()=>{activeRung=activeRung===b.dataset.r?null:b.dataset.r;renderAll()});
+}
+function renderFilters(){
+  const caps=["All",...new Set(CASES.flatMap(c=>c.tags))];
+  const list=visible();
+  $("#filterEl").innerHTML=caps.map(c=>`<button class="chip" id="chip-${c.replace(/\W/g,'')}" aria-pressed="${activeCap===c}">${c}</button>`).join("")+
+   `<span class="count">${list.length} of ${CASES.length} shown${activeRung?` · ${RUNGS.find(r=>r.id===activeRung).name}`:""}</span>`;
+  document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{activeCap=b.textContent;renderAll()});
+}
+function visible(){return CASES.filter(c=>(!activeRung||c.rung===activeRung)&&(activeCap==="All"||c.tags.includes(activeCap)))}
+
+function panel(c,t){
+  if(t==="Problem")return c.problem;
+  if(t==="Options")return `<p>The pathways I weighed, and why I chose one.</p><div class="opts">${c.options.map(o=>`<div class="opt${o[2]?" chosen":""}"><span class="mk">${o[2]?"✓":"✕"}</span><b>${o[0]}</b><span class="why">${o[1]}</span></div>`).join("")}</div>`;
+  if(t==="Rationale")return c.why+`<h4>Grounded in</h4><div class="theory">${c.theory.map(x=>`<span>${x}</span>`).join("")}</div>`;
+  if(t==="Outcome")return c.evidence+(c.links?`<h4>See it</h4><p class="links">${c.links}</p>`:"");
+}
+function renderCases(){
+  const list=visible();
+  if(!list.length){$("#caseEl").innerHTML=`<p class="empty">No projects match this combination. Clear a filter to see more.</p>`;return}
+  $("#caseEl").innerHTML=list.map(c=>{
+    const isOpen=open.has(c.id), t=tabState[c.id]||"Problem";
+    const rung=c.rung?RUNGS.find(r=>r.id===c.rung).name:"Organisational";
+    return `<article class="case${isOpen?" open":""}" id="case-${c.id}">
+      <button class="head" aria-expanded="${isOpen}" data-id="${c.id}">
+        <h3>${c.title}</h3><span class="chev">${isOpen?"Close −":"Open +"}</span>
+        <p class="sum">${c.sum}</p>
+        <div class="row"><span class="pill ${c.status[0]}">${c.status[1]}</span><span class="tag">${rung}</span>${c.tags.map(x=>`<span class="tag">${x}</span>`).join("")}</div>
+      </button>
+      ${isOpen?`<div class="body"><div class="tabs" role="tablist">${["Problem","Options","Rationale","Outcome"].map(x=>`<button class="tab" role="tab" id="tab-${c.id}-${x}" aria-selected="${x===t}" data-id="${c.id}" data-t="${x}">${x}</button>`).join("")}</div><div class="panel" role="tabpanel">${panel(c,t)}</div></div>`:""}
+    </article>`}).join("");
+  document.querySelectorAll(".case>.head").forEach(b=>b.onclick=()=>{const id=b.dataset.id;open.has(id)?open.delete(id):open.add(id);renderCases()});
+  document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{tabState[b.dataset.id]=b.dataset.t;renderCases();document.getElementById(`tab-${b.dataset.id}-${b.dataset.t}`).focus()});
+}
+function renderMatrix(){
+  const short={med:"Medication sim",crs:"Reasoning sim",can:"Survivor sim",aid011:"HLTAID011",dt:"Paper to Moodle",cards:"Pocket cards",proxy:"Patient proxy"};
+  $("#mxEl").innerHTML=`<thead><tr><th>Capability</th>${CASES.map(c=>`<th><button data-id="${c.id}">${short[c.id]}</button></th>`).join("")}</tr></thead><tbody>`+
+   CAPS.map(k=>`<tr><td>${k}</td>${CASES.map(c=>{const v=c.caps[k];return `<td>${v===2?'<span class="dot" title="Primary"></span>':v===1?'<span class="ring" title="Supporting"></span>':""}</td>`}).join("")}</tr>`).join("")+`</tbody>`;
+  document.querySelectorAll("#mxEl th button").forEach(b=>b.onclick=()=>{activeRung=null;activeCap="All";open.add(b.dataset.id);renderAll();document.getElementById("case-"+b.dataset.id).scrollIntoView({behavior:"smooth",block:"start"})});
+}
+function renderAll(){renderLadder();renderFilters();renderCases()}
+open.add("med");
+renderAll();renderMatrix();
+</script>
+
+</body>
+</html>

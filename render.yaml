@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: jets-portfolio
+    runtime: static
+    staticPublishPath: .
+    buildCommand: ""
