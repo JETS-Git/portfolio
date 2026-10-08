@@ -31,8 +31,11 @@ Never commit the Excel export: it contains your work email and SharePoint links 
 Add an object to `credentials` in `data/cpd.json`:
 
 ```json
-{"name": "Advanced Life Support (ALS2)", "issuer": "Provider name", "kind": "Ticket",
- "awarded": "2026-11-01", "expires": "2027-11-01", "certificate": "certificates/als.pdf"}
+{"name": "Advanced Life Support (ALS2)", "issuer": "Provider name", "kind": "Mandatory training",
+ "awarded": "2026-11-01", "expires": "2027-11-01", "certificate": "certificates/als.pdf",
+ "link": "https://provider.example/verify/123"}
 ```
 
-The page marks it Current, Due (within 60 days of expiry) or Expired automatically.
+`kind` groups the list: `Registration`, `Study in progress`, `Qualification` or `Mandatory training`.
+With `expires`/`renews` the page shows Current, Due (within 60 days) or Expired automatically.
+Use `status` for free text such as "Enrolled · completing July 2027", and `detail` for a one-line description.

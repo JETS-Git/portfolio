@@ -151,10 +151,14 @@ th button{appearance:none;border:0;background:none;color:var(--accent);font:inhe
 .meter{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
 .meter i{display:block;height:100%;background:var(--accent)}
 .tile .note{font-size:14px;color:var(--muted)}
-.creds-list{display:grid;gap:0;border-top:1px solid var(--line);margin-bottom:30px}
+.creds-list{display:grid;gap:0;margin-bottom:30px}
 .cred{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:10px 0;border-bottom:1px solid var(--line);align-items:baseline}
 .cred b{font-family:var(--display);font-weight:600;font-size:17px}
-.cred span.iss{grid-column:1;font-size:14px;color:var(--muted)}
+.cred span.iss{grid-column:1/-1;font-size:14px;color:var(--muted)}
+.cred span.det{font-style:italic}
+.cred-group h4{font-family:var(--mono);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:18px 0 0;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.cred-group:first-child h4{margin-top:4px}
+@media (max-width:560px){.creds-list .cred{grid-template-columns:1fr}.creds-list .cred .pill{grid-column:1;grid-row:auto;justify-self:start;white-space:normal}}
 .cred .pill{grid-column:2;grid-row:1}
 .s-due{background:var(--warn-soft);color:var(--warn)}
 .s-exp{background:var(--bad-soft);color:var(--bad)}
@@ -247,7 +251,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:16px;font-fa
     <p>Drawn from my CPD log. Each entry records what I did, the competencies it relates to, and my reflection on how it changes my practice.</p>
   </header>
   <div class="tiles" id="cpdTiles"></div>
-  <h3 style="font-size:20px;margin:0 0 8px">Registration and qualifications</h3>
+  <h3 style="font-size:20px;margin:0 0 8px">Registration, qualifications and training</h3>
   <div class="creds-list" id="credEl"></div>
   <h3 style="font-size:20px;margin:0 0 4px">Learning log</h3>
   <div class="filters" id="cpdFilters" role="group" aria-label="Filter learning log"></div>
@@ -263,7 +267,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:16px;font-fa
     <div>
       <p>I teach the Diploma of Nursing at Marr Mooditj Training, facilitate nursing students on placement at Fiona Stanley and Royal Perth hospitals, and keep my clinical practice current through casual CCU and ED shifts. That mix shapes the work: I design for the moment a student meets a real patient.</p>
       <p>Before nursing I spent thirteen years as a commissioned Intelligence Officer in the Royal Australian Air Force. Analysing systems, weighing options under uncertainty and writing the reasoning down for someone else to scrutinise are habits from that career, and they are the habits this portfolio documents.</p>
-      <p>My research builds on the same question. My proposed doctoral study at the University of Notre Dame Australia, <em>Making Clinical Reasoning Visible</em>, examines how clinical reasoning can be assessed in OSCEs. A later strand explores game mechanics that make a learner's diagnostic reasoning visible step by step.</p>
+      <p>My research builds on the same question. I have applied for doctoral study at the University of Notre Dame Australia from 2027. The proposed research, <em>Making Clinical Reasoning Visible</em>, examines how clinical reasoning can be assessed in OSCEs. Alongside it I am completing a Graduate Certificate in Education (Digital Learning) at Adelaide University and HERDSA’s Scholarship of Teaching and Learning modules. A later strand explores game mechanics that make a learner's diagnostic reasoning visible step by step.</p>
     </div>
     <dl class="creds">
       <div><dt>Registration</dt><dd>Registered Nurse (Division 1)</dd></div>
@@ -466,13 +470,18 @@ function renderCPD(){
     <div class="tile"><span class="k">Clinical practice · ${ry}</span><span class="v">${+prac.toFixed(1)}<small> h</small></span><span class="note">Agency shifts and student clinical facilitation</span></div>
     <div class="tile"><span class="k">Simulation education</span><span class="v">${sim.length}<small> modules</small></span><span class="note">Standards, debriefing, scenario design, moulage and simulated patients</span></div>`;
   const now=new Date();
-  $("#credEl").innerHTML=cpdData.credentials.map(c=>{
-    let pill="";
-    if(c.expires||c.renews){const d=new Date((c.expires||c.renews)+"T00:00"),days=(d-now)/864e5;
-      pill=days<0?`<span class="pill s-exp">Expired ${fmtDate(c.expires||c.renews)}</span>`:days<60?`<span class="pill s-due">Due ${fmtDate(c.expires||c.renews)}</span>`:`<span class="pill s-live">Current to ${fmtDate(c.expires||c.renews)}</span>`}
-    else if(c.awarded)pill=`<span class="pill s-live">Awarded ${fmtDate(c.awarded)}</span>`;
-    const name=c.certificate?`<a href="${esc(c.certificate)}">${esc(c.name)}</a>`:esc(c.name);
-    return `<div class="cred"><b>${name}</b>${pill}<span class="iss">${esc([c.kind,c.issuer].filter(Boolean).join(" · "))}</span></div>`}).join("");
+  const KINDS=["Registration","Study in progress","Qualification","Mandatory training"];
+  const kinds=[...KINDS,...new Set(cpdData.credentials.map(c=>c.kind).filter(k=>!KINDS.includes(k)))];
+  const credRow=c=>{
+    let pill="";const when=c.expires||c.renews;
+    if(when){const d=new Date(when+"T00:00"),days=(d-now)/864e5;
+      pill=days<0?`<span class="pill s-exp">Expired ${fmtDate(when)}</span>`:days<60?`<span class="pill s-due">Due ${fmtDate(when)}</span>`:`<span class="pill s-live">Current to ${fmtDate(when)}</span>`}
+    else if(c.status)pill=`<span class="pill ${c.kind==="Study in progress"?"s-mod":"s-live"}">${esc(c.status)}</span>`;
+    else if(c.awarded)pill=`<span class="pill s-live">Completed ${fmtDate(c.awarded)}</span>`;
+    const links=[c.certificate?`<a href="${esc(c.certificate)}">Certificate</a>`:"",c.link?`<a href="${esc(c.link)}">${/verify/.test(c.link)?"Verify":"Course"}</a>`:""].filter(Boolean).join(" · ");
+    return `<div class="cred"><b>${esc(c.name)}</b>${pill}<span class="iss">${esc(c.issuer||"")}${links?`${c.issuer?" · ":""}${links}`:""}</span>${c.detail?`<span class="iss det">${esc(c.detail)}</span>`:""}</div>`};
+  $("#credEl").innerHTML=kinds.map(k=>{const rows=cpdData.credentials.filter(c=>c.kind===k);
+    return rows.length?`<div class="cred-group"><h4>${esc(k==="Qualification"?"Qualifications":k)}</h4>${rows.map(credRow).join("")}</div>`:""}).join("");
   const counts={};list.forEach(x=>{const g=cpdGroup(x);counts[g]=(counts[g]||0)+1});
   $("#cpdFilters").innerHTML=Object.entries(CPD_GROUPS).filter(([k])=>k==="all"||counts[k]).map(([k,v])=>`<button class="chip" id="cpd-${k}" data-k="${k}" aria-pressed="${cpdFilter===k}">${v}</button>`).join("")+`<span class="count">${list.length} activities</span>`;
   document.querySelectorAll("#cpdFilters .chip").forEach(b=>b.onclick=()=>{cpdFilter=b.dataset.k;renderCPD()});

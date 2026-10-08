@@ -7,6 +7,27 @@
       "renews": "2027-05-31"
     },
     {
+      "name": "Doctor of Philosophy (Nursing)",
+      "issuer": "University of Notre Dame Australia, Fremantle",
+      "kind": "Study in progress",
+      "status": "Application submitted · Semester 1 2027 entry",
+      "detail": "Proposed research: Making Clinical Reasoning Visible, a phased programme of research into the assessment of clinical reasoning in nursing education"
+    },
+    {
+      "name": "Graduate Certificate in Education (Digital Learning)",
+      "issuer": "Adelaide University",
+      "kind": "Study in progress",
+      "status": "Enrolled · completing July 2027"
+    },
+    {
+      "name": "HERDSA Scholarship of Teaching and Learning (SoTL) Modules",
+      "issuer": "HERDSA Academy",
+      "kind": "Study in progress",
+      "status": "In progress",
+      "detail": "Eight self-paced modules, from why SoTL matters through to disseminating findings",
+      "link": "https://herdsa.open-publishing.org/course/view.php?id=3"
+    },
+    {
       "name": "Certificate IV in Training and Assessment (TAE40122)",
       "issuer": "Applied Education",
       "kind": "Qualification",
@@ -21,6 +42,41 @@
       "name": "Bachelor of Science",
       "issuer": "",
       "kind": "Qualification"
+    },
+    {
+      "name": "Basic Life Support (BLS)",
+      "issuer": "Alison",
+      "kind": "Mandatory training",
+      "awarded": "2026-07-15",
+      "certificate": "certificates/basic-life-support-2026.pdf",
+      "link": "https://alison.com/verify/8ca1d62397"
+    },
+    {
+      "name": "Patient Manual Handling",
+      "issuer": "Ramsay Health Care eLearning",
+      "kind": "Mandatory training",
+      "awarded": "2026-10-01",
+      "certificate": "certificates/patient-manual-handling-2026.pdf"
+    },
+    {
+      "name": "Hand hygiene for clinical healthcare workers",
+      "issuer": "Australian Commission on Safety and Quality in Health Care (NHHI)",
+      "kind": "Mandatory training",
+      "awarded": "2026-10-01",
+      "certificate": "certificates/hand-hygiene-2026.pdf"
+    },
+    {
+      "name": "The Basics of Infection Prevention and Control",
+      "issuer": "Australian Commission on Safety and Quality in Health Care (NHHI)",
+      "kind": "Mandatory training",
+      "awarded": "2026-10-01",
+      "certificate": "certificates/infection-prevention-control-2026.pdf"
+    },
+    {
+      "name": "Healthcare worker immunisations",
+      "issuer": "Australian Immunisation Register",
+      "kind": "Mandatory training",
+      "status": "Record available on request"
     }
   ],
   "cpd": [
@@ -123,8 +179,8 @@
     {
       "log_id": 28,
       "show": true,
-      "title": "Hand hygiene: the 5 Moments",
-      "provider": "",
+      "title": "Hand hygiene for clinical healthcare workers",
+      "provider": "Australian Commission on Safety and Quality in Health Care (NHHI)",
       "date": "2026-10-01",
       "hours": 1.0,
       "category": "B",
@@ -133,13 +189,13 @@
         "HLTINF006 - Apply basic principles and practices of infection prevention and control"
       ],
       "reflection": "The content was familiar, but working through the moments in a structured way reminded me where my practice is most likely to slip under time pressure. The highest-risk moments are Moment 5, after touching a patient's surroundings, and the transition between procedure and patient contact in a busy ED or CCU, when I move between bed spaces or handle shared equipment. The module also made me consider that students copy what clinicians and educators actually do far more than what we tell them.",
-      "certificate": null
+      "certificate": "certificates/hand-hygiene-2026.pdf"
     },
     {
       "log_id": 29,
       "show": true,
-      "title": "Infection prevention and control: risk-based precautions",
-      "provider": "",
+      "title": "The Basics of Infection Prevention and Control",
+      "provider": "Australian Commission on Safety and Quality in Health Care (NHHI)",
       "date": "2026-10-01",
       "hours": 1.0,
       "category": "B",
@@ -148,7 +204,7 @@
         "HLTENN060 - Apply nursing practice in the paediatric care setting"
       ],
       "reflection": "The biggest value for me was framing IPC as a risk-assessment process. In ED, a patient's infectious status is often unknown at presentation, so applying standard precautions consistently and escalating early to transmission-based precautions matters more than waiting for a confirmed diagnosis. The PPE sequencing content was also a useful reminder. Removing PPE is where self-contamination is most likely, and it is a step students and busy clinicians commonly rush.",
-      "certificate": null
+      "certificate": "certificates/infection-prevention-control-2026.pdf"
     },
     {
       "log_id": 26,
