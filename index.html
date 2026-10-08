@@ -496,7 +496,7 @@ function renderCPD(){
   const ups=(cpdData.upcoming||[]).filter(u=>new Date(u.date+"T00:00")>=today).sort((a,b)=>(a.date+(a.start||"")).localeCompare(b.date+(b.start||"")));
   $("#upWrap").hidden=!ups.length;
   $("#upEl").innerHTML=ups.map(u=>`<article class="ev">
-    <div class="when"><span>${new Date(u.date+"T00:00").toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short",year:"numeric"})} · ${esc(u.time)}</span><span class="pill ${u.status==="Registered"?"s-live":"s-mod"}">${esc(u.status)}</span></div>
+    <div class="when"><span>${new Date(u.date+"T00:00").toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short",year:"numeric"})} · ${esc(u.time)}</span><span class="pill ${/^(Registered|Attending)$/.test(u.status)?"s-live":"s-mod"}">${esc(u.status)}</span></div>
     <b>${u.link?`<a href="${esc(u.link)}">${esc(u.title)}</a>`:esc(u.title)}</b>
     <span class="meta2">${esc(u.event)} · ${esc(u.host)}</span>
     <span class="meta2">${esc(u.speakers)} · ${esc(u.format)}</span>
