@@ -36,6 +36,6 @@ Add an object to `credentials` in `data/cpd.json`:
  "link": "https://provider.example/verify/123"}
 ```
 
-`kind` groups the list: `Registration`, `Study in progress`, `Qualification` or `Mandatory training`.
+`kind` groups the list: `Registration`, `Study in progress`, `Qualification`, `Professional memberships` or `Mandatory training`.
 With `expires`/`renews` the page shows Current, Due (within 60 days) or Expired automatically.
 Use `status` for free text such as "Enrolled · completing July 2027", and `detail` for a one-line description.

@@ -272,7 +272,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:16px;font-fa
     <dl class="creds">
       <div><dt>Registration</dt><dd>Registered Nurse (Division 1)</dd></div>
       <div><dt>Education</dt><dd>Bachelor of Nursing · Bachelor of Science · Cert IV Training and Assessment (TAE40122)</dd></div>
-      <div><dt>Memberships</dt><dd>Australian College of Nursing · ACCCN · HERDSA Health Sciences and SoTL SIGs</dd></div>
+      <div><dt>Memberships</dt><dd>Australian College of Nursing · ACCCN · HERDSA Health Sciences, Online Engagement in Higher Education and SoTL SIGs</dd></div>
       <div><dt>Tools</dt><dd>Moodle · Python and web apps on Render · LLM integration · ESP32 · Blender and 3D printing</dd></div>
     </dl>
   </div>
@@ -470,7 +470,7 @@ function renderCPD(){
     <div class="tile"><span class="k">Clinical practice · ${ry}</span><span class="v">${+prac.toFixed(1)}<small> h</small></span><span class="note">Agency shifts and student clinical facilitation</span></div>
     <div class="tile"><span class="k">Simulation education</span><span class="v">${sim.length}<small> modules</small></span><span class="note">Standards, debriefing, scenario design, moulage and simulated patients</span></div>`;
   const now=new Date();
-  const KINDS=["Registration","Study in progress","Qualification","Mandatory training"];
+  const KINDS=["Registration","Study in progress","Qualification","Professional memberships","Mandatory training"];
   const kinds=[...KINDS,...new Set(cpdData.credentials.map(c=>c.kind).filter(k=>!KINDS.includes(k)))];
   const credRow=c=>{
     let pill="";const when=c.expires||c.renews;

@@ -88,6 +88,36 @@
       "issuer": "Australian Immunisation Register",
       "kind": "Mandatory training",
       "status": "Record available on request"
+    },
+    {
+      "name": "Australian College of Nursing (ACN)",
+      "issuer": "",
+      "kind": "Professional memberships",
+      "status": "Member"
+    },
+    {
+      "name": "Australian College of Critical Care Nurses (ACCCN)",
+      "issuer": "",
+      "kind": "Professional memberships",
+      "status": "Member"
+    },
+    {
+      "name": "HERDSA Health Sciences Special Interest Group",
+      "issuer": "Higher Education Research and Development Society of Australasia",
+      "kind": "Professional memberships",
+      "status": "Member"
+    },
+    {
+      "name": "HERDSA Online Engagement in Higher Education Special Interest Group",
+      "issuer": "Higher Education Research and Development Society of Australasia",
+      "kind": "Professional memberships",
+      "status": "Member"
+    },
+    {
+      "name": "HERDSA Scholarship of Teaching and Learning (SoTL) Special Interest Group",
+      "issuer": "Higher Education Research and Development Society of Australasia",
+      "kind": "Professional memberships",
+      "status": "Member"
     }
   ],
   "cpd": [
