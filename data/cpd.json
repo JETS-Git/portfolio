@@ -882,5 +882,44 @@
       "reflection": "Maintaining awareness of regulatory and compliance updates strengthened my understanding of governance, documentation accuracy, ethical practice, and professional accountability within health education delivery. This supported reflective practice, professional standards adherence, and quality improvement in teaching and assessment contexts relevant to nursing education.",
       "certificate": null
     }
+  ],
+  "upcoming": [
+    {
+      "date": "2026-10-14",
+      "time": "11:30 am – 1:00 pm AWST",
+      "title": "Beyond grades: Reimagining how student achievement is recognised in higher education",
+      "event": "CRADLE International Symposium panel",
+      "host": "Centre for Research in Assessment and Digital Learning (CRADLE), Deakin University",
+      "speakers": "Prof David Boud, Prof Rola Ajjawi, A/Prof Lauren Hansen",
+      "format": "Online",
+      "status": "Registered",
+      "why": "How achievement is recognised beyond a grade bears directly on competency-based assessment in the Diploma of Nursing and on my research into making clinical reasoning visible.",
+      "start": "11:30"
+    },
+    {
+      "date": "2026-11-11",
+      "time": "9:30 am – 1:00 pm AWST",
+      "title": "Assessment Literacies in the age of GenAI: Navigating a Wicked Problem",
+      "event": "2026 Australasian Symposium",
+      "host": "Transforming Assessment (ASCILITE SIG) and the HERDSA Assessment Quality SIG",
+      "speakers": "Keynote: A/Prof Thomas Corbin. Closing plenary: Prof Simon Sneddon",
+      "format": "Online · recorded",
+      "status": "Planned",
+      "link": "https://transformingassessment.com/civicrm/event/info?reset=1&id=199",
+      "why": "Generative AI is reshaping how we can trust take-home assessment. This informs how I secure the Moodle knowledge assessments I build while keeping them valid and fair.",
+      "start": "09:30"
+    },
+    {
+      "date": "2026-11-11",
+      "time": "11:00 am – 12:30 pm AWST",
+      "title": "Assessment Design Toolkit: Embedding inclusion and security",
+      "event": "CRADLE seminar",
+      "host": "CRADLE, Deakin University",
+      "speakers": "Dr Nicole Crawford, Sue Sharpe, A/Prof Joanna Tai, Dr Paige Mahoney, Alcy Meehan",
+      "format": "Online",
+      "status": "Registered",
+      "why": "Balancing inclusion with assessment security is a daily design decision in vocational nursing education, especially for students studying in an additional language.",
+      "start": "11:00"
+    }
   ]
 }

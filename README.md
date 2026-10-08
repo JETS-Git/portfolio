@@ -39,3 +39,16 @@ Add an object to `credentials` in `data/cpd.json`:
 `kind` groups the list: `Registration`, `Study in progress`, `Qualification`, `Professional memberships` or `Mandatory training`.
 With `expires`/`renews` the page shows Current, Due (within 60 days) or Expired automatically.
 Use `status` for free text such as "Enrolled · completing July 2027", and `detail` for a one-line description.
+
+## Adding upcoming sessions
+
+Add an object to `upcoming` in `data/cpd.json`:
+
+```json
+{"date": "2026-10-14", "start": "11:30", "time": "11:30 am – 1:00 pm AWST", "title": "Session title",
+ "event": "Seminar", "host": "Host", "speakers": "Names", "format": "Online", "status": "Registered",
+ "link": "https://public-event-page", "why": "One line on why it matters to my practice."}
+```
+
+Sessions disappear from the page automatically after their date. Log them in the CPD form once attended.
+Never add Zoom links, passcodes or order numbers: this file is public.

@@ -175,6 +175,12 @@ th button{appearance:none;border:0;background:none;color:var(--accent);font:inhe
 .chip.more{justify-self:start;margin-top:14px}
 @media (max-width:560px){.entry{grid-template-columns:minmax(0,1fr) auto}.entry time{grid-column:1/-1}.entry .sub,.entry details{grid-column:1/-1}}
 
+.up{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:30px}
+.ev{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.ev .when{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px;font-family:var(--mono);font-size:13px;color:var(--accent);font-variant-numeric:tabular-nums}
+.ev b{font-family:var(--display);font-size:18px;font-weight:600;line-height:1.25}
+.ev .meta2{font-size:14px;color:var(--muted)}
+.ev .why{font-size:15px;margin:2px 0 0}
 /* About */
 .about{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px}
 .about p{margin:0 0 12px}
@@ -253,6 +259,10 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:16px;font-fa
   <div class="tiles" id="cpdTiles"></div>
   <h3 style="font-size:20px;margin:0 0 8px">Qualifications, memberships and registration</h3>
   <div class="creds-list" id="credEl"></div>
+  <div id="upWrap" hidden>
+    <h3 style="font-size:20px;margin:0 0 8px">Upcoming professional development</h3>
+    <div class="up" id="upEl"></div>
+  </div>
   <h3 style="font-size:20px;margin:0 0 4px">Learning log</h3>
   <div class="filters" id="cpdFilters" role="group" aria-label="Filter learning log"></div>
   <div class="log" id="cpdLog"><p class="empty">Loading learning log…</p></div>
@@ -482,6 +492,16 @@ function renderCPD(){
     return `<div class="cred"><b>${esc(c.name)}</b>${pill}<span class="iss">${esc(c.issuer||"")}${links?`${c.issuer?" · ":""}${links}`:""}</span>${c.detail?`<span class="iss det">${esc(c.detail)}</span>`:""}</div>`};
   $("#credEl").innerHTML=kinds.map(k=>{const rows=cpdData.credentials.filter(c=>c.kind===k);
     return rows.length?`<div class="cred-group"><h4>${esc(k==="Qualification"?"Qualifications":k)}</h4>${rows.map(credRow).join("")}</div>`:""}).join("");
+  const today=new Date();today.setHours(0,0,0,0);
+  const ups=(cpdData.upcoming||[]).filter(u=>new Date(u.date+"T00:00")>=today).sort((a,b)=>(a.date+(a.start||"")).localeCompare(b.date+(b.start||"")));
+  $("#upWrap").hidden=!ups.length;
+  $("#upEl").innerHTML=ups.map(u=>`<article class="ev">
+    <div class="when"><span>${new Date(u.date+"T00:00").toLocaleDateString("en-AU",{weekday:"short",day:"numeric",month:"short",year:"numeric"})} · ${esc(u.time)}</span><span class="pill ${u.status==="Registered"?"s-live":"s-mod"}">${esc(u.status)}</span></div>
+    <b>${u.link?`<a href="${esc(u.link)}">${esc(u.title)}</a>`:esc(u.title)}</b>
+    <span class="meta2">${esc(u.event)} · ${esc(u.host)}</span>
+    <span class="meta2">${esc(u.speakers)} · ${esc(u.format)}</span>
+    ${u.why?`<p class="why">${esc(u.why)}</p>`:""}
+  </article>`).join("");
   const counts={};list.forEach(x=>{const g=cpdGroup(x);counts[g]=(counts[g]||0)+1});
   $("#cpdFilters").innerHTML=Object.entries(CPD_GROUPS).filter(([k])=>k==="all"||counts[k]).map(([k,v])=>`<button class="chip" id="cpd-${k}" data-k="${k}" aria-pressed="${cpdFilter===k}">${v}</button>`).join("")+`<span class="count">${list.length} activities</span>`;
   document.querySelectorAll("#cpdFilters .chip").forEach(b=>b.onclick=()=>{cpdFilter=b.dataset.k;renderCPD()});
