@@ -49,28 +49,32 @@
       "kind": "Mandatory training",
       "awarded": "2026-07-15",
       "certificate": "certificates/basic-life-support-2026.pdf",
-      "link": "https://alison.com/verify/8ca1d62397"
+      "link": "https://alison.com/verify/8ca1d62397",
+      "expires": "2027-07-15"
     },
     {
       "name": "Patient Manual Handling",
       "issuer": "Ramsay Health Care eLearning",
       "kind": "Mandatory training",
       "awarded": "2026-10-01",
-      "certificate": "certificates/patient-manual-handling-2026.pdf"
+      "certificate": "certificates/patient-manual-handling-2026.pdf",
+      "expires": "2027-10-01"
     },
     {
       "name": "Hand hygiene for clinical healthcare workers",
       "issuer": "Australian Commission on Safety and Quality in Health Care (NHHI)",
       "kind": "Mandatory training",
       "awarded": "2026-10-01",
-      "certificate": "certificates/hand-hygiene-2026.pdf"
+      "certificate": "certificates/hand-hygiene-2026.pdf",
+      "expires": "2027-10-01"
     },
     {
       "name": "The Basics of Infection Prevention and Control",
       "issuer": "Australian Commission on Safety and Quality in Health Care (NHHI)",
       "kind": "Mandatory training",
       "awarded": "2026-10-01",
-      "certificate": "certificates/infection-prevention-control-2026.pdf"
+      "certificate": "certificates/infection-prevention-control-2026.pdf",
+      "expires": "2027-10-01"
     },
     {
       "name": "Healthcare worker immunisations",
@@ -471,6 +475,36 @@
         "CHCCOM005 - Communicate and work in the health and community services"
       ],
       "reflection": "Deeper understanding of the international standards of simulation based education",
+      "certificate": null
+    },
+    {
+      "log_id": 33,
+      "show": true,
+      "title": "Clinical practice: surgical ward (plastics, urology and ophthalmology)",
+      "provider": "",
+      "date": "2026-08-31",
+      "hours": 120.0,
+      "category": "A",
+      "type": "Workplace/Industry Experience",
+      "units": [
+        "HLTAAP002 - Confirm physical health status",
+        "HLTAAP003 - Analyse and respond to client health information",
+        "HLTENN035 - Practise nursing within the Australian health care system",
+        "HLTENN036 - Apply communication skills in nursing practice",
+        "HLTENN037 - Perform clinical assessment and contribute to planning nursing care",
+        "HLTENN038 - Implement, monitor and evaluate nursing care",
+        "HLTENN039 - Apply principles of wound management",
+        "HLTENN040 - Administer and monitor medicines and intravenous therapy",
+        "HLTENN041 - Apply legal and ethical parameters to nursing practice",
+        "HLTENN043 - Implement and monitor care for a person with acute health conditions",
+        "HLTENN044 -Implement and monitor care for a person with chronic health conditions",
+        "HLTENN045 -Implement and monitor care of the older person",
+        "HLTINF006 - Apply basic principles and practices of infection prevention and control",
+        "HLTWHS002 - Follow safe work practices for direct client care",
+        "HLTWHS006 - Manage personal stressors in the work environment",
+        "HLTENN057 - Contribute to the nursing care of a person with diabetes"
+      ],
+      "reflection": "Provided insights into current industry standards of practice on a surgical ward covering plastics, urology and ophthalmology.",
       "certificate": null
     },
     {
