@@ -22,7 +22,7 @@
 :root{
   --paper:#fbfbf9; --sheet:#ffffff; --ink:#18232e; --muted:#5a6672; --line:#dfe3e6;
   --grid:#f0cfcf; --grid-strong:#e3a9a9; --accent:#1d5fa0; --accent-soft:#e6eef7;
-  --ok:#2f7d4f; --ok-soft:#e3f1e8; --warn:#9a6a00; --warn-soft:#fbf1d9; --info:#6a4aa0; --info-soft:#efe9f8;
+  --ok:#2f7d4f; --ok-soft:#e3f1e8; --warn:#9a6a00; --warn-soft:#fbf1d9; --info:#6a4aa0; --info-soft:#efe9f8; --bad:#a3261b; --bad-soft:#fbe3e1;
   --display:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -30,11 +30,11 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --paper:#11171d; --sheet:#171f27; --ink:#e7ecf0; --muted:#9aa7b3; --line:#2a3540;
   --grid:#2c2226; --grid-strong:#4a3036; --accent:#7fb2e6; --accent-soft:#1c2c3d;
-  --ok:#7fcb9b; --ok-soft:#18301f; --warn:#e7c06a; --warn-soft:#33290f; --info:#b9a2e6; --info-soft:#2a2238; color-scheme:dark}}
+  --ok:#7fcb9b; --ok-soft:#18301f; --warn:#e7c06a; --warn-soft:#33290f; --info:#b9a2e6; --info-soft:#2a2238; --bad:#f19a90; --bad-soft:#3a1d1a; color-scheme:dark}}
 :root[data-theme="dark"]{
   --paper:#11171d; --sheet:#171f27; --ink:#e7ecf0; --muted:#9aa7b3; --line:#2a3540;
   --grid:#2c2226; --grid-strong:#4a3036; --accent:#7fb2e6; --accent-soft:#1c2c3d;
-  --ok:#7fcb9b; --ok-soft:#18301f; --warn:#e7c06a; --warn-soft:#33290f; --info:#b9a2e6; --info-soft:#2a2238; color-scheme:dark}
+  --ok:#7fcb9b; --ok-soft:#18301f; --warn:#e7c06a; --warn-soft:#33290f; --info:#b9a2e6; --info-soft:#2a2238; --bad:#f19a90; --bad-soft:#3a1d1a; color-scheme:dark}
 
 *{box-sizing:border-box}
 body{margin:0}
@@ -142,6 +142,35 @@ td .ring{display:inline-block;width:11px;height:11px;border-radius:50%;border:2p
 th button{appearance:none;border:0;background:none;color:var(--accent);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
 .legend{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
 
+/* Professional learning */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:26px}
+.tile{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:6px;min-width:0}
+.tile .k{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.tile .v{font-family:var(--display);font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.tile .v small{font-size:15px;font-weight:500;color:var(--muted)}
+.meter{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent)}
+.tile .note{font-size:14px;color:var(--muted)}
+.creds-list{display:grid;gap:0;border-top:1px solid var(--line);margin-bottom:30px}
+.cred{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:10px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.cred b{font-family:var(--display);font-weight:600;font-size:17px}
+.cred span.iss{grid-column:1;font-size:14px;color:var(--muted)}
+.cred .pill{grid-column:2;grid-row:1}
+.s-due{background:var(--warn-soft);color:var(--warn)}
+.s-exp{background:var(--bad-soft);color:var(--bad)}
+.log{display:grid;gap:0;border-top:1px solid var(--line)}
+.entry{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.entry time{font-family:var(--mono);font-size:13px;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.entry h4{font-family:var(--display);font-size:18px;font-weight:600;margin:0;text-transform:none;letter-spacing:0;color:var(--ink)}
+.entry .hrs{font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:3px;white-space:nowrap}
+.entry .sub{grid-column:2/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:14px;color:var(--muted)}
+.entry details{grid-column:2/-1;font-size:15px}
+.entry summary{cursor:pointer;color:var(--accent);font-family:var(--display);font-weight:500;font-size:14px}
+.entry details p{margin:6px 0 0;max-width:68ch}
+.entry .units-all{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.chip.more{justify-self:start;margin-top:14px}
+@media (max-width:560px){.entry{grid-template-columns:minmax(0,1fr) auto}.entry time{grid-column:1/-1}.entry .sub,.entry details{grid-column:1/-1}}
+
 /* About */
 .about{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px}
 .about p{margin:0 0 12px}
@@ -163,7 +192,7 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:16px;font-fa
       <path d="M0 40 H160 l12 -6 l12 6 H230 l8 6 l10 -40 l10 50 l8 -16 H330 l18 -10 l18 10 H520 l12 -6 l12 6 H570 l8 6 l10 -40 l10 50 l8 -16 H670 l18 -10 l18 10 H860 l12 -6 l12 6 H910 l8 6 l10 -40 l10 50 l8 -16 H1000"/>
       <circle cx="996" cy="40" r="4"/>
     </svg>
-    <div class="meta"><span>Marr Mooditj Training · Byford WA</span><span>RN Div 1 · Cert IV TAE40122</span><span>7 projects · 5 levels of fidelity</span></div>
+    <div class="meta"><span>Marr Mooditj Training · Byford WA</span><span>RN Div 1 · Cert IV TAE40122</span><span>7 projects · 5 levels of fidelity</span><span><a href="#learning">Credentials and CPD ↓</a></span></div>
   </div>
 </header>
 
@@ -209,6 +238,20 @@ footer{margin-top:56px;border-top:1px solid var(--line);padding-top:16px;font-fa
   </header>
   <div class="mx"><table id="mxEl"></table></div>
   <div class="legend"><span><span class="dot" style="display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--accent);vertical-align:middle"></span> primary capability</span><span><span style="display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid var(--accent);opacity:.6;vertical-align:middle"></span> supporting</span></div>
+</section>
+
+<section id="learning">
+  <header>
+    <div class="eyebrow">Professional learning</div>
+    <h2>Credentials and continuing development</h2>
+    <p>Drawn from my CPD log. Each entry records what I did, the competencies it relates to, and my reflection on how it changes my practice.</p>
+  </header>
+  <div class="tiles" id="cpdTiles"></div>
+  <h3 style="font-size:20px;margin:0 0 8px">Registration and qualifications</h3>
+  <div class="creds-list" id="credEl"></div>
+  <h3 style="font-size:20px;margin:0 0 4px">Learning log</h3>
+  <div class="filters" id="cpdFilters" role="group" aria-label="Filter learning log"></div>
+  <div class="log" id="cpdLog"><p class="empty">Loading learning log…</p></div>
 </section>
 
 <section id="about">
@@ -398,6 +441,55 @@ function renderMatrix(){
 function renderAll(){renderLadder();renderFilters();renderCases()}
 open.add("med");
 renderAll();renderMatrix();
+/* Professional learning: reads data/cpd.json */
+const CPD_GROUPS={all:"All",learn:"Formal learning",sim:"Simulation education",practice:"Clinical practice",lead:"Leadership and networking",aware:"Industry awareness"};
+let cpdData=null, cpdFilter="all", cpdAll=false;
+const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function cpdGroup(e){
+  if(/NHET-Sim|simulat/i.test(e.title+" "+e.provider))return"sim";
+  if(/Workplace/i.test(e.type))return"practice";
+  if(e.category==="C"||/network/i.test(e.type))return"lead";
+  if(e.category==="D")return"aware";
+  return"learn";
+}
+function regYear(d=new Date()){const y=d.getMonth()>=5?d.getFullYear():d.getFullYear()-1;return[new Date(y,5,1),new Date(y+1,4,31,23,59)]}
+const fmtDate=s=>{const d=new Date(s+"T00:00");return isNaN(d)?s:d.toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"numeric"})};
+function renderCPD(){
+  const list=cpdData.cpd.filter(e=>e.show).sort((a,b)=>b.date.localeCompare(a.date));
+  const [s,e]=regYear(), inYr=list.filter(x=>{const d=new Date(x.date+"T00:00");return d>=s&&d<=e});
+  const dev=inYr.filter(x=>cpdGroup(x)!=="practice").reduce((t,x)=>t+(x.hours||0),0);
+  const prac=inYr.filter(x=>cpdGroup(x)==="practice").reduce((t,x)=>t+(x.hours||0),0);
+  const sim=list.filter(x=>cpdGroup(x)==="sim");
+  const ry=`${s.getFullYear()}–${String(e.getFullYear()).slice(2)}`;
+  $("#cpdTiles").innerHTML=`
+    <div class="tile"><span class="k">Development hours · ${ry}</span><span class="v">${+dev.toFixed(1)}<small> / 20 h</small></span><div class="meter"><i style="width:${Math.min(100,dev/20*100)}%"></i></div><span class="note">NMBA minimum is 20 hours per registration year</span></div>
+    <div class="tile"><span class="k">Clinical practice · ${ry}</span><span class="v">${+prac.toFixed(1)}<small> h</small></span><span class="note">Agency shifts and student clinical facilitation</span></div>
+    <div class="tile"><span class="k">Simulation education</span><span class="v">${sim.length}<small> modules</small></span><span class="note">Standards, debriefing, scenario design, moulage and simulated patients</span></div>`;
+  const now=new Date();
+  $("#credEl").innerHTML=cpdData.credentials.map(c=>{
+    let pill="";
+    if(c.expires||c.renews){const d=new Date((c.expires||c.renews)+"T00:00"),days=(d-now)/864e5;
+      pill=days<0?`<span class="pill s-exp">Expired ${fmtDate(c.expires||c.renews)}</span>`:days<60?`<span class="pill s-due">Due ${fmtDate(c.expires||c.renews)}</span>`:`<span class="pill s-live">Current to ${fmtDate(c.expires||c.renews)}</span>`}
+    else if(c.awarded)pill=`<span class="pill s-live">Awarded ${fmtDate(c.awarded)}</span>`;
+    const name=c.certificate?`<a href="${esc(c.certificate)}">${esc(c.name)}</a>`:esc(c.name);
+    return `<div class="cred"><b>${name}</b>${pill}<span class="iss">${esc([c.kind,c.issuer].filter(Boolean).join(" · "))}</span></div>`}).join("");
+  const counts={};list.forEach(x=>{const g=cpdGroup(x);counts[g]=(counts[g]||0)+1});
+  $("#cpdFilters").innerHTML=Object.entries(CPD_GROUPS).filter(([k])=>k==="all"||counts[k]).map(([k,v])=>`<button class="chip" id="cpd-${k}" data-k="${k}" aria-pressed="${cpdFilter===k}">${v}</button>`).join("")+`<span class="count">${list.length} activities</span>`;
+  document.querySelectorAll("#cpdFilters .chip").forEach(b=>b.onclick=()=>{cpdFilter=b.dataset.k;renderCPD()});
+  const matched=list.filter(x=>cpdFilter==="all"||cpdGroup(x)===cpdFilter), shown=cpdAll?matched:matched.slice(0,8);
+  $("#cpdLog").innerHTML=shown.map(x=>`<article class="entry">
+    <time datetime="${esc(x.date)}">${fmtDate(x.date)}</time>
+    <h4>${x.certificate?`<a href="${esc(x.certificate)}">${esc(x.title)}</a>`:esc(x.title)}</h4>
+    <span class="hrs">${x.hours?`${x.hours} h`:""}</span>
+    <div class="sub">${x.provider?`<span>${esc(x.provider)}</span>`:""}${(x.units||[]).slice(0,3).map(u=>`<span class="tag" title="${esc(u)}">${esc(u.split(" ")[0])}</span>`).join("")}${(x.units||[]).length>3?`<span class="tag">+${x.units.length-3} units</span>`:""}${x.certificate?`<span class="tag">Certificate</span>`:""}</div>
+    ${x.reflection||(x.units||[]).length>3?`<details><summary>${x.reflection?"Reflection":"Related units"}</summary>${x.reflection?`<p>${esc(x.reflection)}</p>`:""}${(x.units||[]).length>3?`<p class="units-all">${x.units.map(esc).join(" · ")}</p>`:""}</details>`:""}
+  </article>`).join("")||`<p class="empty">Nothing in this category yet.</p>`;
+  if(matched.length>8)$("#cpdLog").insertAdjacentHTML("beforeend",`<button class="chip more" id="cpdMore">${cpdAll?"Show recent only":`Show all ${matched.length} activities`}</button>`);
+  const m=$("#cpdMore");if(m)m.onclick=()=>{cpdAll=!cpdAll;renderCPD()};
+}
+fetch("data/cpd.json",{cache:"no-cache"}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{cpdData=d;renderCPD()})
+  .catch(()=>{$("#cpdLog").innerHTML=`<p class="empty">The learning log couldn't load. Refresh the page to try again.</p>`});
+
 </script>
 
 </body>

@@ -1,0 +1,4 @@
+# Raw CPD log exports contain work email and SharePoint links, so keep them out of this public repo
+*.xlsx
+*.xls
+*.csv
