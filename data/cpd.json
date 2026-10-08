@@ -84,6 +84,13 @@
       "expires": "2027-10-01"
     },
     {
+      "name": "National Police Certificate",
+      "issuer": "Western Australia Police Force",
+      "kind": "Mandatory training",
+      "awarded": "2026-10-08",
+      "status": "Issued 8 Oct 2026 · available on request"
+    },
+    {
       "name": "Healthcare worker immunisations",
       "issuer": "Australian Immunisation Register",
       "kind": "Mandatory training",
