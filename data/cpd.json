@@ -1,10 +1,17 @@
 {
   "credentials": [
     {
-      "name": "Registered Nurse (Division 1)",
-      "issuer": "Ahpra / NMBA",
-      "kind": "Registration",
-      "renews": "2027-05-31"
+      "name": "Graduate Certificate in Education (Digital Learning)",
+      "issuer": "Adelaide University",
+      "kind": "Study in progress",
+      "status": "Enrolled · completing July 2027"
+    },
+    {
+      "name": "Fellowship of the Higher Education Academy (FHEA)",
+      "issuer": "Advance HE",
+      "kind": "Study in progress",
+      "status": "Application in progress",
+      "detail": "Descriptor 2 of the Professional Standards Framework (PSF 2023), evidenced through Diploma of Nursing teaching and clinical facilitation"
     },
     {
       "name": "Doctor of Philosophy (Nursing)",
@@ -12,12 +19,6 @@
       "kind": "Study in progress",
       "status": "Application submitted · Semester 1 2027 entry",
       "detail": "Proposed research: Making Clinical Reasoning Visible, a phased programme of research into the assessment of clinical reasoning in nursing education"
-    },
-    {
-      "name": "Graduate Certificate in Education (Digital Learning)",
-      "issuer": "Adelaide University",
-      "kind": "Study in progress",
-      "status": "Enrolled · completing July 2027"
     },
     {
       "name": "HERDSA Scholarship of Teaching and Learning (SoTL) Modules",
@@ -28,11 +29,34 @@
       "link": "https://herdsa.open-publishing.org/course/view.php?id=3"
     },
     {
-      "name": "Fellowship of the Higher Education Academy (FHEA)",
-      "issuer": "Advance HE",
-      "kind": "Study in progress",
-      "status": "Application in progress",
-      "detail": "Descriptor 2 of the Professional Standards Framework (PSF 2023), evidenced through Diploma of Nursing teaching and clinical facilitation"
+      "name": "HERDSA Scholarship of Teaching and Learning (SoTL) Special Interest Group",
+      "issuer": "Higher Education Research and Development Society of Australasia",
+      "kind": "Professional memberships",
+      "status": "Member"
+    },
+    {
+      "name": "HERDSA Health Sciences Special Interest Group",
+      "issuer": "Higher Education Research and Development Society of Australasia",
+      "kind": "Professional memberships",
+      "status": "Member"
+    },
+    {
+      "name": "HERDSA Online Engagement in Higher Education Special Interest Group",
+      "issuer": "Higher Education Research and Development Society of Australasia",
+      "kind": "Professional memberships",
+      "status": "Member"
+    },
+    {
+      "name": "Australian College of Nursing (ACN)",
+      "issuer": "",
+      "kind": "Professional memberships",
+      "status": "Member"
+    },
+    {
+      "name": "Registered Nurse (Division 1)",
+      "issuer": "Ahpra / NMBA",
+      "kind": "Registration",
+      "renews": "2027-05-31"
     },
     {
       "name": "Certificate IV in Training and Assessment (TAE40122)",
@@ -95,30 +119,6 @@
       "issuer": "Australian Immunisation Register",
       "kind": "Mandatory training",
       "status": "Record available on request"
-    },
-    {
-      "name": "Australian College of Nursing (ACN)",
-      "issuer": "",
-      "kind": "Professional memberships",
-      "status": "Member"
-    },
-    {
-      "name": "HERDSA Health Sciences Special Interest Group",
-      "issuer": "Higher Education Research and Development Society of Australasia",
-      "kind": "Professional memberships",
-      "status": "Member"
-    },
-    {
-      "name": "HERDSA Online Engagement in Higher Education Special Interest Group",
-      "issuer": "Higher Education Research and Development Society of Australasia",
-      "kind": "Professional memberships",
-      "status": "Member"
-    },
-    {
-      "name": "HERDSA Scholarship of Teaching and Learning (SoTL) Special Interest Group",
-      "issuer": "Higher Education Research and Development Society of Australasia",
-      "kind": "Professional memberships",
-      "status": "Member"
     }
   ],
   "cpd": [
