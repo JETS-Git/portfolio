@@ -29,6 +29,12 @@
       "link": "https://herdsa.open-publishing.org/course/view.php?id=3"
     },
     {
+      "name": "Higher Education Research and Development Society of Australasia (HERDSA)",
+      "issuer": "WA Branch",
+      "kind": "Professional memberships",
+      "status": "Member"
+    },
+    {
       "name": "HERDSA Scholarship of Teaching and Learning (SoTL) Special Interest Group",
       "issuer": "Higher Education Research and Development Society of Australasia",
       "kind": "Professional memberships",
@@ -963,6 +969,18 @@
       "format": "Online",
       "status": "Attending",
       "why": "A chance to reflect on the SIG's year and help shape its 2027 priorities, so my assessment work contributes to the wider higher education conversation."
+    },
+    {
+      "date": "2026-11-02",
+      "start": "13:00",
+      "time": "1:00 – 2:00 pm AWST",
+      "title": "HERDSA WA Branch Annual General Meeting",
+      "event": "Annual General Meeting",
+      "host": "HERDSA WA Branch Committee",
+      "speakers": "HERDSA WA members",
+      "format": "Online",
+      "status": "Planned",
+      "why": "A chance to reflect on the WA branch's year and connect with higher education colleagues in Western Australia, building local networks for my scholarly teaching practice."
     }
   ]
 }
