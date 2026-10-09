@@ -52,3 +52,13 @@ Add an object to `upcoming` in `data/cpd.json`:
 
 Sessions disappear from the page automatically after their date. Log them in the CPD form once attended.
 Never add Zoom links, passcodes or order numbers: this file is public.
+
+## Adding professional engagement
+
+Add an object to `engagement` in `data/cpd.json` (committee roles, nominations, presentations, reviewing):
+
+```json
+{"title": "Role or activity", "when": "October 2026", "org": "Organisation", "status": "Nomination submitted",
+ "summary": "What I did and why.", "items_label": "Initiatives I proposed", "items": ["...", "..."],
+ "why": "Why this matters to my practice.", "note": "Optional footnote, e.g. when the outcome is due."}
+```
